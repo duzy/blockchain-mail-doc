@@ -1,0 +1,23 @@
+#+TITLE: Blockchain SMTP Worklogs
+#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
+#+DATE: Since 2016-12-08\\\footnotesize{\sl (Updated on \today)}
+#+OPTIONS: toc:nil
+#+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
+#+LaTeX_HEADER: \usepackage[margin=1.in]{geometry}
+#+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+LaTeX: \setcounter{secnumdepth}{0}
+#+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+
+* Date 2016-12-08 \P{[0/1]}
+
+  - [-] 13:34\sim{}16:00 \P{[1/2]}
+    
+    - [X] Finding solution to log SMTP command responses.
+      
+      The worker thread tracer needs to see SMTP interactions.
+
+    - [ ] Implement new SMTP client (\textbf{InterceptClient}).
+
+      It's an reimplement based on the standard SMTP library to avoid modifying
+      the standard library and allow us to track the SMTP sections.

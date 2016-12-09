@@ -1,0 +1,19 @@
+#+TITLE: Blockchain SMTP Worklogs
+#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
+#+DATE: Since 2016-12-08\\\tiny{\sl (Updated \today)}
+#+OPTIONS: toc:nil
+#+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
+#+LaTeX_HEADER: \usepackage[margin=1.in]{geometry}
+#+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+LaTeX: \setcounter{secnumdepth}{0}
+#+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+
+* Date#2 2016-12-09 \P{[1/1]}
+
+  - [X] Refine the initial design doc (based on the meeting yestoday).
+
+* Date#1 2016-12-08 \P{[2/2]}
+
+  - [X] Initial Design Brainstoming.
+  - [X] Meeting Patrick in Shenzhen.

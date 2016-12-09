@@ -1,0 +1,29 @@
+#+TITLE: Blockchain SMTP Work Plan
+#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
+#+DATE: Since 2016-12-08\\\footnotesize{\sl (Updated on \today)}
+#+OPTIONS: toc:nil
+#+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
+#+LaTeX_HEADER: \usepackage[margin=1.in]{geometry}
+#+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+LaTeX: \setcounter{secnumdepth}{1}
+#+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+
+* Design Brainstoming \P{[0/2]}
+
+  Come up with a solution for development.
+  
+* Development
+
+** Prototyping \P{[0/1]}
+
+   - [ ] ...
+     
+** Iteration #1 \P{[0/1]}
+
+   - [ ] ...
+     
+** Iteration #2 \P{[0/1]}
+   
+   - [ ] ...
+

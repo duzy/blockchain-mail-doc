@@ -1,0 +1,134 @@
+#+TITLE:
+#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
+#+DATE: Since 2016-12-08\\\footnotesize{\sl (Updated on \today)}
+#+OPTIONS: toc:nil author:t date:t
+#+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
+#+LaTeX_HEADER: \usepackage[margin=1.28in]{geometry}
+#+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+LaTeX_HEADER: \usepackage[nodayofweek]{datetime}
+#+LaTeX_HEADER: \usepackage{CJKutf8} %{CJK}
+#+LaTeX_HEADER: \usepackage{pinyin} % also part of CJK
+#+LaTeX: \setcounter{secnumdepth}{2}
+#+LaTeX: \renewcommand{\abstractname}{概\ \ 要}
+#+LaTeX: \renewcommand\contentsname{目\ \ 录}
+#+LaTeX: \newdateformat{chinesedate}{\THEYEAR年\THEMONTH月\THEDAY日}
+#+LaTeX: \newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
+#+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\note#1{{\footnotesize\textcolor{pink}{{\bf NOTE:}\ #1}}}
+#+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+#+LaTeX: \def\hl#1{{\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\kw#1{\textbf{\textsl{\textcolor{Brown}{#1}}}}
+#+LaTeX: \begin{CJK*}{UTF8}{gbsn}
+
+#+LaTeX: \title{基于区块连的SMTP设计\small(Drafting)}
+#+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
+#+LaTeX: \date{2016年12月8日\\\tiny{(\chinesedate\today更新)}}
+#+LaTeX: \maketitle
+
+#+BEGIN_ABSTRACT
+SMTP是经典的电子邮局协议，我们将其与区块链技术做一个结合的尝试。细思可以有很多可能
+的方向和多种有趣的组合，但实际发展路线由\textbf{项目定位}决定。通常的做法是在开始
+的时候仅实现预想的模型，以便验证商业可行性。
+#+END_ABSTRACT
+
+#+TOC: headlines 2 local
+
+#+LaTeX: \newpage
+
+* 定位
+
+  起初我的理解是\textbf{在区块连网络（Quantum）上实现SMTP协议}。与Patrick讨论后，
+  发现实际使用场景更像是一个“支付方案”（如同类的BitPay，传统的PayPal, Alipay等）。
+
+  所以我们首先有一个选择题要做：
+
+  - [ ] 为最终用户提供一个电子邮件和电子钱包的托管平台。
+    
+    \hl{用户在网站注册帐号，该帐号提供电子邮件和Quantum钱包的功能，平台将为用户托管钱包。}
+    
+  - [ ] 为最终用户提供一个基于区块连网络（Quantum）的支付方案。
+    
+    \hl{提供一个支付方案可以不需要电子邮件功能，可仅为用户托管电子钱包，通过连接的方式和商家网站集成。}
+    
+  - [ ] 为开发者（玩家）提供一个电子邮局的基础平台（可能发展为一个生态）。
+    
+    \hl{扩展区块链协议，使之成为可以电子邮局的方式接入的平台（第二节的描述更接近于此）。玩家可以是开发者，实现自己的Broker以支持自己的业务逻辑，以此获利。}
+    
+  - [ ] 其他？
+
+* 利用SMTP接入区块链网络（待定）
+** 重新定义邮箱
+
+  传统邮箱地址code@duzy.info，变成：
+
+  - \hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@node-abc.net}
+  - \hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@broker-xyz.com}
+  - \hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@example.com}
+
+  以上不同地址实为同一目的接收者，其中``@node-abc.net''、``@broker-xyz.com''、
+  ``@example.com''等称为\kw{接入终端}，运行一个\kw{Broker}实例。\kw{接入终端}与
+  区块链网络互联，因为是分布式网络，无论从哪个终端接入，其实是一样的。
+
+** 接入模块（Broker）
+    
+   将SMTP接入Blockchain中，目的是允许传统的邮件客户端无缝地通过Qtum网络
+   发送、接收信息，传输币。
+    
+** 运行方式
+
+   根据实际使用场景选择\kw{Broker}：
+    
+   + 单独以Node Proxy的模式运行
+   + 嵌入Wallet Client中运行
+   + 以Mail Server的方式运行
+     
+     - 可服务多个客户端
+  
+** 邮件存储
+
+   电子邮局非即时通信，\kw{Broker}需要用户的邮件。可能的存储方式有：
+    
+   + 链内存储（fee）
+     
+     链内存储必须要支付\textbf{有意义}的费用，而且有严格的字节限制。
+     
+   + 外部存储
+     
+     由\kw{Broker}决定如何存储邮件，甚至\kw{Broker}可以以此向用户收费。
+
+** Broker的角色
+
+*** 钱包托管
+
+    \kw{Broker}可以扩展为一个可靠的服务，并未用户托管钱包，如此让用户更加便捷地
+    收发币，甚至是\kw{数字资产}。
+
+*** 邮件服务
+
+    提供高可用性的传统邮件服务。
+
+*** 特殊业务
+
+    更具自己的业务提供特色服务，并以此盈利。
+
+*** MX服务
+    
+   企业级邮箱服务的接入方案。企业级邮箱服务需要大量的资源投入。
+
+** 邮件客户端
+
+   + 传统邮件客户端
+     - 传统邮件收发
+     - 可用辅助工具支持币传输
+   + \kw{Broker}托管邮件客户端（WebMail）
+     - 可很好地集成所有高级功能
+   + 专用邮件客户端（开发）
+     - 可集成所有高级功能和Wallet
+   
+** 安全
+    
+   + DDoS
+   + 验证
+   + Malicious Broker
+
+#+LaTeX: \clearpage\end{CJK*} % 加个 clearpage 修复 toc 中文的问题
