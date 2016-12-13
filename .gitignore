@@ -1,4 +1,6 @@
 *~
+/.emacs.desktop
+/.emacs.desktop.lock
 /WorkLogTemplate.pdf
 /WorkLogTemplate.tex
 /WorkLog.pdf
@@ -7,5 +9,12 @@
 /WorkPlanTemplate.tex
 /WorkPlan.pdf
 /WorkPlan.tex
-/DesignProposals.pdf
-/DesignProposals.tex
+/DraftDesign.zh.pdf
+/DraftDesign.zh.tex
+/DraftDesign.zh.lof
+/DraftDesign.zh.bcf
+/DraftDesign.zh.lot
+/DraftDesign.zh.run.xml
+/DraftDesign.en.pdf
+/DraftDesign.en.tex
+/DraftDesign.en.lof

@@ -9,11 +9,21 @@
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
 
-* Date#2 2016-12-09 \P{[1/1]}
+* Date 2016-12-13 \P{[2/2]}
+
+  - [X] Refining design doc (turning into \textbf{whitepaper}).
+  - [X] Thinking about addresses & domains.
+
+* Date 2016-12-12 \P{[2/2]}
+
+  - [X] Refining design doc.
+  - [X] Broker system diagram.
+
+* Date 2016-12-09 \P{[1/1]}
 
   - [X] Refine the initial design doc (based on the meeting yestoday).
 
-* Date#1 2016-12-08 \P{[2/2]}
+* Date 2016-12-08 \P{[2/2]}
 
   - [X] Initial Design Brainstoming.
   - [X] Meeting Patrick in Shenzhen.

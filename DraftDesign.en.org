@@ -1,0 +1,30 @@
+#+TITLE:
+#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
+#+DATE: Since 2016-12-08\\\footnotesize{\sl (Updated on \today)}
+#+OPTIONS: toc:nil author:t date:t
+#+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
+#+LaTeX_HEADER: \usepackage[margin=1.28in]{geometry}
+#+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+LaTeX_HEADER: \usepackage[nodayofweek]{datetime}
+#+LaTeX: \setcounter{secnumdepth}{2}
+#+LaTeX: \newdateformat{chinesedate}{\THEYEAR-\THEMONTH-\THEDAY}
+#+LaTeX: \newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
+#+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\note#1{{\footnotesize\textcolor{pink}{{\bf NOTE:}\ #1}}}
+#+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+#+LaTeX: \def\hl#1{{\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\kw#1{\textbf{\textsl{\textcolor{Brown}{#1}}}}
+
+#+LaTeX: \title{Blockchain Based SMTP Design\small(Drafting)}
+#+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
+#+LaTeX: \date{2016-12-8\\\tiny{(update: \chinesedate\today)}}
+#+LaTeX: \maketitle
+
+#+BEGIN_ABSTRACT
+SMTP is the classic eletronic mail transfer protocol on the internet. 
+#+END_ABSTRACT
+
+#+TOC: headlines 2 local
+
+#+LaTeX: \newpage
+

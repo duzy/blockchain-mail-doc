@@ -1,0 +1,172 @@
+#+TITLE:
+#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
+#+DATE: Since 2016-12-08\\\footnotesize{\sl (Updated on \today)}
+#+OPTIONS: toc:nil author:t date:t
+#+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
+#+LaTeX_HEADER: %\usepackage[chinese]{babel}
+#+LaTeX_HEADER: \usepackage{biblatex}\addbibresource{References.bib}
+#+LaTeX_HEADER: \usepackage[margin=1.28in]{geometry}
+#+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
+#+LaTeX_HEADER: \usepackage[nodayofweek]{datetime}
+#+LaTeX_HEADER: \usepackage{CJKutf8} %{CJK}
+#+LaTeX_HEADER: \usepackage{pinyin} % also part of CJK
+#+LaTeX: \setcounter{secnumdepth}{2}
+#+LaTeX: \renewcommand{\abstractname}{概\ \ 要}
+#+LaTeX: \renewcommand\contentsname{目\ \ 录}
+#+LaTeX: \renewcommand{\figurename}{图}
+#+LaTeX: \renewcommand{\listfigurename}{插\ \ 图}
+#+LaTeX: \renewcommand{\listtablename}{表\ \ 格}
+#+LaTeX: \newdateformat{chinesedate}{\THEYEAR年\THEMONTH月\THEDAY日}
+#+LaTeX: \newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
+#+LaTeX: \setlength{\parindent}{20pt}
+#+LaTeX: \setlength{\parskip}{2pt}
+#+LaTeX: \setlength{\baselineskip}{18pt} %{5mm}
+#+LaTeX: %\setlength{\baselinestretch}{1.2}
+#+LaTeX: \linespread{1.3}
+#+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\note#1{{\footnotesize\textcolor{pink}{{\bf NOTE:}\ #1}}}
+#+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+#+LaTeX: \def\todo#1{{(\textcolor{red}{\bf TODO:}\ #1)}}
+#+LaTeX: \def\draft#1{\textcolor{Bittersweet}{#1}}
+#+LaTeX: \def\term#1{\textcolor{Sepia}{\bf #1}}
+#+LaTeX: \def\hl#1{{\textcolor{CadetBlue}{#1}}}
+#+LaTeX: \def\kw#1{\textbf{\textsl{\textcolor{Brown}{#1}}}}
+#+LaTeX: \begin{CJK*}{UTF8}{gbsn}
+
+#+LaTeX: \title{基于区块连的SMTP设计\small(Drafting)}
+#+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
+#+LaTeX: \date{2016年12月8日\\\tiny{(\chinesedate\today更新)}}
+#+LaTeX: \maketitle
+
+#+BEGIN_ABSTRACT
+SMTP\cite{RFC5321}是经典的电子邮局协议，我们将其与区块链技术做一个结合的尝试。用户在没有一个数字
+钱包客户端（Fullnode）的情况下，可以使用传统的邮件客户端\draft{管理（支付）}财产。
+#+END_ABSTRACT
+
+#+TOC: headlines 2 local
+
+#+LaTeX: \newpage
+
+* 简介
+
+  使用数字货币时，用户通常都需要下载\term{钱包}客户端，或者使用线上\term{托管钱包}。
+  下载钱包客户端意味着用户需要同时下载整个\term{区块链}数据才能正常管理自己的财产。
+  托管钱包可以为用户提供更多便利，包括避免用户下载日益曾长的区块链数据，以及更多的
+  线上扩展功能。
+
+  我们在这里为用户和社区提供另外一种可能，同样在不需要用户下载完整的区块链的情况下
+  完成数字支付功能。我们为用户提供基于传统电子邮件体验的数字钱包，以及为社区提供
+  基于Quantuam网络的\term{电子邮件}方案。
+  
+  \term{SMTP}是互联网的经典电子邮局协议，我们的目标是在分布式的Quantuam网络中实现
+  经典电子邮局的功能，并将经典的电子邮箱抽象扩展为电子钱包。\todo{细述}
+    
+* 重新定义邮箱
+
+  传统\term{电子邮箱地址}，例如\hl{geek@duzy.info}，由两部分组成：
+  + 邮箱ID（帐号）：\textbf{geek}
+  + 邮箱服务器名：\textbf{duzy.info}
+  我们重新定义电子邮箱，并保证兼容传统电子邮箱地址格式，兼容传统的电子邮件客户端。
+
+  假设王君拥有钱包地址\hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96}，李君拥有钱包地址
+  \hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe}。在没有下载任何Quantum钱包客户端的情况
+  下，王君要给李君发送信息（资产），我们可以在网络中创建以下邮件\todo{mail format definition}：
+  #+BEGIN_SRC
+  From: 1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96@node.example.com
+  To: 1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@node.example.com
+  Subject: Great Money for Li
+  #+END_SRC
+  其中\hl{@node.example.com}为Quantum网络中任一可达\term{节点}或\hyperref[sec-3]{Broker}。
+
+  \textbf{新地址与传统电子邮箱地址的差别在于跨域标识特性。}\todo{identification spec definition}
+
+  \todo{定义：跨域标识 Cross Domain Identification}
+
+  \todo{定义：分布式邮件服务 Distributed Mail Server}
+
+   # reference http://orgmode.org/org.html#Images-in-LaTeX-export
+   #+CAPTION: Addresses
+   #+NAME: fig:email-addresses
+   #+ATTR_LATEX: :float t :placement [!htb]
+   [[./images/email-addresses.png]]
+
+* 接入模块（Broker）
+    
+   将SMTP接入Blockchain中，目的是允许传统的邮件客户端无缝地通过Quantum网络
+   发送、接收信息，传输币。（[[fig:blockchain-broker-diagram][Brokers拓扑图]]）
+
+   # reference http://orgmode.org/org.html#Images-in-LaTeX-export
+   #+CAPTION: Brokers
+   #+NAME: fig:blockchain-broker-diagram
+   #+ATTR_LATEX: :float t :placement [!htb]
+   [[./images/blockchain-broker-diagram.png]]
+
+* 运行方式
+
+   根据实际使用场景选择\kw{Broker}：
+    
+   + 单独以Node Proxy的模式运行
+   + 嵌入Wallet Client中运行
+   + 以Mail Server的方式运行
+     
+     - 可服务多个客户端
+  
+* 邮件存储
+
+   电子邮局非即时通信，\kw{Broker}需要用户的邮件。可能的存储方式有：
+    
+   + 链内存储（fee）
+     
+     链内存储必须要支付\textbf{有意义}的费用，而且有严格的字节限制。
+     
+   + 外部存储
+     
+     由\kw{Broker}决定如何存储邮件，甚至\kw{Broker}可以以此向用户收费。
+
+* Broker的角色
+
+** 钱包托管
+
+    \kw{Broker}可以扩展为一个可靠的服务，并未用户托管钱包，如此让用户更加便捷地
+    收发币，甚至是\kw{数字资产}。
+
+** 邮件服务
+
+    提供高可用性的传统邮件服务。
+
+** 特殊业务
+
+    更具自己的业务提供特色服务，并以此盈利。
+
+** MX服务
+    
+   企业级邮箱服务的接入方案。企业级邮箱服务需要大量的资源投入。也可以为现有的企业
+   邮箱服务提供商提供接入方案。
+
+* 邮件客户端
+
+   + 传统邮件客户端
+     - 传统邮件收发
+     - 可用辅助工具支持币传输
+   + \kw{Broker}托管邮件客户端（WebMail）
+     - 可很好地集成所有高级功能
+   + 专用邮件客户端（开发）
+     - 可集成所有高级功能和Wallet
+   
+* 安全
+    
+   + DDoS
+   + 验证
+   + Malicious Broker
+
+* 参考
+#+LaTeX: \printbibliography[title={References}]
+
+# https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Table_of_contents
+#+LaTeX: \clearpage\newpage\thispagestyle{empty}
+#+LaTeX: \appendix
+* 附录
+#+LaTeX: \addcontentsline{toc}{subsection}{插\ \ 图}\listoffigures
+#+LaTeX: \addcontentsline{toc}{subsection}{表\ \ 格}\listoftables
+
+#+LaTeX: \clearpage\end{CJK*} % 加个 clearpage 修复 toc 中文的问题
