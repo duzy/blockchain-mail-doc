@@ -39,7 +39,7 @@
 #+LaTeX: \maketitle
 
 #+BEGIN_ABSTRACT
-SMTP\cite{RFC5321}是经典的电子邮局协议，我们将其与区块链技术做一个结合的尝试。用户在没有一个数字
+SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其与区块链技术做一个结合的尝试。用户在没有一个数字
 钱包客户端（Fullnode）的情况下，可以使用传统的邮件客户端\draft{管理（支付）}财产。
 #+END_ABSTRACT
 
@@ -76,7 +76,7 @@ SMTP\cite{RFC5321}是经典的电子邮局协议，我们将其与区块链技�
   To: 1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@node.example.com
   Subject: Great Money for Li
   #+END_SRC
-  其中\hl{@node.example.com}为Quantum网络中任一可达\term{节点}或\hyperref[sec-3]{Broker}。
+  其中\hl{@node.example.com}表示为Quantum网络中一可达\term{节点}或\hyperref[sec-3]{Broker}。
 
   \textbf{新地址与传统电子邮箱地址的差别在于跨域标识特性。}\todo{identification spec definition}
 
@@ -160,7 +160,12 @@ SMTP\cite{RFC5321}是经典的电子邮局协议，我们将其与区块链技�
    + Malicious Broker
 
 * 参考
-#+LaTeX: \printbibliography[title={References}]
+# \printbibliography[type=article,title={Articles only}]
+# \printbibliography[type=book,title={Books only}]
+# \printbibliography[keyword={physics},title={Physics-related only}]
+# \printbibliography[keyword={latex},title={\LaTeX-related only}]
+#+LaTeX: \printbibliography[title={}]
+\todo{...}
 
 # https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Table_of_contents
 #+LaTeX: \clearpage\newpage\thispagestyle{empty}
