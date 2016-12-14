@@ -1179,8 +1179,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="322.03519"
-     inkscape:cy="416.50593"
+     inkscape:cx="162.45562"
+     inkscape:cy="380.09048"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1827,34 +1827,37 @@
        id="path4600"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#8080c8;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 6;stroke-dashoffset:9.60559845;stroke-opacity:0.78431373"
-       d="m 6.8748915,459.75523 732.6699685,0"
-       id="path4602"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.34625053px;line-height:125%;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#8080c8;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.78431373"
-       x="699.9444"
-       y="456.49258"
-       id="text4956"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4958"
+    <g
+       id="g45085">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4602"
+         d="m 6.8748915,459.75523 732.6699685,0"
+         style="fill:none;fill-rule:evenodd;stroke:#8080c8;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 6;stroke-dashoffset:9.60559845;stroke-opacity:0.78431373" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4956"
+         y="456.49258"
          x="699.9444"
-         y="456.49258">SMTP</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.34625053px;line-height:125%;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#8080c8;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.78431373"
-       x="11.496632"
-       y="473.89709"
-       id="text4956-0"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4958-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.34625053px;line-height:125%;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#8080c8;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.78431373"
+         xml:space="preserve"><tspan
+           y="456.49258"
+           x="699.9444"
+           id="tspan4958"
+           sodipodi:role="line">SMTP</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4956-0"
+         y="473.89709"
          x="11.496632"
-         y="473.89709">SMTP</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.34625053px;line-height:125%;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#8080c8;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.78431373"
+         xml:space="preserve"><tspan
+           y="473.89709"
+           x="11.496632"
+           id="tspan4958-2"
+           sodipodi:role="line">SMTP</tspan></text>
+    </g>
     <path
        style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#0f0f0f;stroke-width:1.20000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.78431373;marker-start:url(#marker4940-4);marker-end:url(#marker4952-6)"
        d="m 642.55682,586.70282 c 53.42094,195.1735 25.39468,216.23794 -16.58092,235.88179"

@@ -8,6 +8,8 @@
 #+LaTeX_HEADER: \usepackage[margin=1.28in]{geometry}
 #+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
 #+LaTeX_HEADER: \usepackage[nodayofweek]{datetime}
+#+LaTeX_HEADER: \usepackage{enumitem}
+#+LaTeX_HEADER: \usepackage{tikz}
 #+LaTeX_HEADER: \usepackage{CJKutf8} %{CJK}
 #+LaTeX_HEADER: \usepackage{pinyin} % also part of CJK
 #+LaTeX: \setcounter{secnumdepth}{2}
@@ -16,6 +18,7 @@
 #+LaTeX: \renewcommand{\figurename}{图}
 #+LaTeX: \renewcommand{\listfigurename}{插\ \ 图}
 #+LaTeX: \renewcommand{\listtablename}{表\ \ 格}
+#+LaTeX: \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 #+LaTeX: \newdateformat{chinesedate}{\THEYEAR年\THEMONTH月\THEDAY日}
 #+LaTeX: \newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
 #+LaTeX: \setlength{\parindent}{20pt}
@@ -39,8 +42,9 @@
 #+LaTeX: \maketitle
 
 #+BEGIN_ABSTRACT
-SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其与区块链技术做一个结合的尝试。用户在没有一个数字
-钱包客户端（Fullnode）的情况下，可以使用传统的邮件客户端\draft{管理（支付）}财产。
+SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其与区块链技术做一个
+结合的尝试。用户在没有一个数字钱包客户端的情况下，可以使用传统的邮件客户端
+\draft{管理（支付）}财产。我们称这个系统为\href{http://www.springemail.com}{Spring Email}。
 #+END_ABSTRACT
 
 #+TOC: headlines 2 local
@@ -59,18 +63,31 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
   基于Quantuam网络的\term{电子邮件}方案。
   
   \term{SMTP}是互联网的经典电子邮局协议，我们的目标是在分布式的Quantuam网络中实现
-  经典电子邮局的功能，并将经典的电子邮箱抽象扩展为电子钱包。\todo{细述}
+  经典电子邮局的功能，并将经典的电子邮箱进一步抽象，扩展为电子钱包。
+
+  \todo{补充}
     
 * 重新定义邮箱
 
   传统\term{电子邮箱地址}，例如\hl{geek@duzy.info}，由两部分组成：
   + 邮箱ID（帐号）：\textbf{geek}
   + 邮箱服务器名：\textbf{duzy.info}
-  我们重新定义电子邮箱，并保证兼容传统电子邮箱地址格式，兼容传统的电子邮件客户端。
+  其中邮箱ID仅限于域duzy.info有效。我们将继承这种标准地址格式，但其含义将被重新定义，
+  同时保证兼容传统电子邮箱，兼容传统的电子邮件客户端。
 
-  假设王君拥有钱包地址\hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96}，李君拥有钱包地址
-  \hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe}。在没有下载任何Quantum钱包客户端的情况
-  下，王君要给李君发送信息（资产），我们可以在网络中创建以下邮件\todo{mail format definition}：
+  在Quantum网络中，\term{电子邮箱地址}与上面传统格式相同，但每部分所代表的意义有
+  所变化。例如地址\hl{\bf 1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@node.example.com}，
+  由以下两部分组成：
+  + \hyperref[sec-2-1]{链地址}：\hl{\bf 1PkyncFDsXmcg6pnPUvNJWougztWejAdVe}
+  + \hyperref[sec-2-2]{接入域}名：\textbf{node.example.com}
+  假设有以下两个连地址：
+  \begin{enumerate}[label=\protect\circled{\arabic*}]
+  \item\hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96}
+  \item\hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe}
+  \end{enumerate}
+  王君拥有链地址\circled{1}，李君拥有链地址\circled{2}。在没有下载任何
+  Quantum钱包客户端的情况下，王君要给李君发送信息（资产），我们可以在网络中创建
+  以下邮件\todo{mail format definition}：
   #+BEGIN_SRC
   From: 1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96@node.example.com
   To: 1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@node.example.com
@@ -78,22 +95,53 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
   #+END_SRC
   其中\hl{@node.example.com}表示为Quantum网络中一可达\term{节点}或\hyperref[sec-3]{Broker}。
 
-  \textbf{新地址与传统电子邮箱地址的差别在于跨域标识特性。}\todo{identification spec definition}
+  \textbf{新地址与传统电子邮箱地址的一个关键差别在于跨域标识特性。}\todo{identification spec definition}
 
   \todo{定义：跨域标识 Cross Domain Identification}
 
   \todo{定义：分布式邮件服务 Distributed Mail Server}
 
    # reference http://orgmode.org/org.html#Images-in-LaTeX-export
-   #+CAPTION: Addresses
+   #+CAPTION: Network Identification
    #+NAME: fig:email-addresses
    #+ATTR_LATEX: :float t :placement [!htb]
    [[./images/email-addresses.png]]
 
-* 接入模块（Broker）
-    
-   将SMTP接入Blockchain中，目的是允许传统的邮件客户端无缝地通过Quantum网络
-   发送、接收信息，传输币。（[[fig:blockchain-broker-diagram][Brokers拓扑图]]）
+** 链地址
+
+   \term{链地址}即为我们所说的钱包地址。链地址代表Quantum网络中的实际消息接收者。
+   任何人只要拥有一个地址，就可以用它接收邮件。用户获得一个地址的所有权，意味着
+   拥有与之对应的\term{私钥}。
+
+   \term{链地址}在Quantum网络中具有唯一性，而且这个特性不受域而改变。只要是通过
+   Quantum网络发送的邮件，都可以通过\term{链地址}送达，且不论是从哪个域接入。与
+   经典电子邮箱相比是非常，这是一个巨大的差别，但是对于经典系统来说这是透明的。
+
+   因为经典电子邮箱通常是绑定到一个邮件服务器域中，比如gmail.com。但是在Quantum
+   网络中，域更多地只是一个入口------\hyperref[sec-2-2]{接入域}。
+   
+** 接入域
+
+   当用户发起邮件请求的时候，应用到的是经典的SMTP协议。用户通常使用邮件客户端发起
+   SMTP请求，这些请求必须通过转义之后进入Quantum网络或直接转发给接收方电子邮局（
+   根据邮件的类别属性\todo{Mail Classes Definition}）。
+   
+   Quantum网络中的节点可以负责接入邮件 (但节点并非必须如此) ，或者由专门负责处理
+   SMTP请求的Broker\term{转义}处理，然后投入Quantuam网络中。
+
+   能够处理SMTP请求，并将消息转义为预定格式（\todo{Inter-Message Format Definition}）在Quantum网络传输（按特定协议\todo{Protocol Definition}）的主机，
+   我们称之为\term{接入域}。因此接入域在经典概念中是一个邮件服务器，服务于传统邮件
+   客户端。
+
+* 网络接入（Interconnection）
+
+   前面提到Quantum网络中的节点可以负责接入邮件，但是考虑节点的处理能力，节点直接
+   处理SMTP请求不能作为其主要功能。节点通常是分散、不确定的。而邮件服务必须由可靠
+   且有能力的主机负责。
+
+   我们将负责接入SMTP请求的组件称为\term{Broker}，因此运行这样一个Broker的主机即可
+   称为\term{接入域}。Broker可以可靠服务的形式存在，为众多客户提供邮件服务，并转义
+   邮件请求，接入Quantum网络中（[[fig:blockchain-broker-diagram][Brokers拓扑图]]）。
 
    # reference http://orgmode.org/org.html#Images-in-LaTeX-export
    #+CAPTION: Brokers
@@ -101,50 +149,91 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
    #+ATTR_LATEX: :float t :placement [!htb]
    [[./images/blockchain-broker-diagram.png]]
 
-* 运行方式
+   服务运营方可以为Broker服务注册专有域名，如broker.example.com，方便用户配置邮件
+   客户端。我们可以设想有许多个\term{接入域}同时存在，服务于不同的用户群。但是只要
+   他们接入Quantum网络，他们其实是对等的。假设有两个域broker1.example.net和broker2.example.net，
+   如果将邮件发送至以下两个地址：
+   + \hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96@broker1.example.net}
+   + \hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96@broker2.example.net}
+   得到的结果是一样的，最终接收到邮件的都是拥有地址\hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96}
+   的人。
 
-   根据实际使用场景选择\kw{Broker}：
+   \todo{Security concern about Malicious Broker}
+
+   在Spring Email中\term{Broker}是至关重要的一个组件，我们将设计以下几种运行方式
+   （但不限于）：
+
+** Broker Node Proxy
+   
+   \term{Proxy Node}是一个轻量的节点，它并不下载完整的区块链，而是承担网络承接和信息
+   转发的任务。在\term{Node Proxy}中实现Broker可以是一个很好的选择。
+
+   对用户来说Proxy Node是非常好的选择，因为它不需要下载庞大的区块链，因此更加可用，
+   但不能得到完整的功能。值得注意的是，\term{Node Proxy}不是一个\term{Full Node}，
+   如果网络中Proxy的数量过多，会导致网络集中化，不利于网络去中心化。
+   
+** Broker Node
+
+   \term{Broker Node}是在一个\term{Full Node}中实现的\term{Broker}功能。对用户来说，
+   这像是在\term{Wallet Client}中打开Broker选项，而区域网络内的其他用户便可使用常规
+   的邮件客户端，将该主机设为邮件发送服务器。
+   
+** Broker Mail Server
+     
+   \term{Broker Mail Server}是为了服务于更多的邮件客户端，提供可靠和个性化的的邮件
+   服务。
+
+*** 拓展服务
     
-   + 单独以Node Proxy的模式运行
-   + 嵌入Wallet Client中运行
-   + 以Mail Server的方式运行
-     
-     - 可服务多个客户端
-  
-* 邮件存储
-
-   电子邮局非即时通信，\kw{Broker}需要用户的邮件。可能的存储方式有：
+    \todo{...}
     
-   + 链内存储（fee）
+**** 钱包托管
      
-     链内存储必须要支付\textbf{有意义}的费用，而且有严格的字节限制。
+     \kw{Broker}可以扩展为一个可靠的服务，并未用户托管钱包，如此让用户更加便捷地
+     收发币，甚至是\kw{数字资产}。
      
-   + 外部存储
+**** 邮件服务
      
-     由\kw{Broker}决定如何存储邮件，甚至\kw{Broker}可以以此向用户收费。
+     提供高可用性的传统邮件服务。
+     
+**** 特殊业务
+     
+     更具自己的业务提供特色服务，并以此盈利。
+     
+**** MX服务
+     
+     企业级邮箱服务的接入方案。企业级邮箱服务需要大量的资源投入。也可以为现有的企业
+     邮箱服务提供商提供接入方案。
 
-* Broker的角色
+* 邮件发送 (Delivery)
 
-** 钱包托管
+** 分布式
 
-    \kw{Broker}可以扩展为一个可靠的服务，并未用户托管钱包，如此让用户更加便捷地
-    收发币，甚至是\kw{数字资产}。
+   \todo{...}
 
-** 邮件服务
+** 经典模式
 
-    提供高可用性的传统邮件服务。
+   \todo{...}
+   
+* 邮件存储 (Storage)
 
-** 特殊业务
+  \todo{...}
 
-    更具自己的业务提供特色服务，并以此盈利。
-
-** MX服务
+  电子邮局非即时通信，\kw{Broker}需要用户的邮件。可能的存储方式有：
     
-   企业级邮箱服务的接入方案。企业级邮箱服务需要大量的资源投入。也可以为现有的企业
-   邮箱服务提供商提供接入方案。
+** 链内存储
+     
+   链内存储必须要支付\textbf{有意义}的费用，而且有严格的字节限制。
+     
+** 外部存储
+     
+   由\kw{Broker}决定如何存储邮件，甚至\kw{Broker}可以以此向用户收费。
 
-* 邮件客户端
+* 向后兼容
 
+  \todo{...}
+
+** 邮件客户端
    + 传统邮件客户端
      - 传统邮件收发
      - 可用辅助工具支持币传输
@@ -152,12 +241,19 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
      - 可很好地集成所有高级功能
    + 专用邮件客户端（开发）
      - 可集成所有高级功能和Wallet
+
+** 与传统邮件服务器交互
+
+   \todo{point expose here...}
    
 * 安全
-    
+
+  \todo{...}
+
    + DDoS
    + 验证
    + Malicious Broker
+   + 政策？（邮件经由分布式网络传播会破防火墙）
 
 * 参考
 # \printbibliography[type=article,title={Articles only}]
@@ -165,7 +261,7 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
 # \printbibliography[keyword={physics},title={Physics-related only}]
 # \printbibliography[keyword={latex},title={\LaTeX-related only}]
 #+LaTeX: \printbibliography[title={}]
-\todo{...}
+\todo{external reference list}
 
 # https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Table_of_contents
 #+LaTeX: \clearpage\newpage\thispagestyle{empty}
