@@ -4,7 +4,6 @@
 #+OPTIONS: toc:nil author:t date:t
 #+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
 #+LaTeX_HEADER: %\usepackage[chinese]{babel}
-#+LaTeX_HEADER: \usepackage{biblatex}\addbibresource{References.bib}
 #+LaTeX_HEADER: \usepackage[margin=1.28in]{geometry}
 #+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
 #+LaTeX_HEADER: \usepackage[nodayofweek]{datetime}
@@ -12,12 +11,24 @@
 #+LaTeX_HEADER: \usepackage{tikz}
 #+LaTeX_HEADER: \usepackage{CJKutf8} %{CJK}
 #+LaTeX_HEADER: \usepackage{pinyin} % also part of CJK
+#+LaTeX_HEADER: \usepackage{biblatex}\addbibresource{References.bib}
+#+LaTeX_HEADER: \usepackage[makeindex]{imakeidx}
+#+LaTeX_HEADER: \usepackage{multind}
+#+LaTeX_HEADER: \makeindex[intoc, name=general, title=General Index, columns=2]
+#+LaTeX_HEADER: \makeindex[intoc, name=aut,title=Authors Index,columns=2]
+#+LaTeX_HEADER: \usepackage[acronyms,toc]{glossaries}
+#+LaTeX_HEADER: \loadglsentries[main]{Glossaries}\makeglossaries
+# LaTeX_HEADER: \input]{Glossaries}\makeglossaries
 #+LaTeX: \setcounter{secnumdepth}{2}
 #+LaTeX: \renewcommand{\abstractname}{概\ \ 要}
 #+LaTeX: \renewcommand\contentsname{目\ \ 录}
 #+LaTeX: \renewcommand{\figurename}{图}
-#+LaTeX: \renewcommand{\listfigurename}{插\ \ 图}
-#+LaTeX: \renewcommand{\listtablename}{表\ \ 格}
+# LaTeX: \renewcommand{\listfigurename}{插\ \ 图}
+#+LaTeX: \renewcommand{\listfigurename}{}
+# LaTeX: \renewcommand{\listoffigures}{\@starttoc{lof}}
+# LaTeX: \renewcommand{\listtablename}{表\ \ 格}
+#+LaTeX: \renewcommand{\listtablename}{}
+# LaTeX: \renewcommand{\listoftables}{\@starttoc{lot}}
 #+LaTeX: \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 #+LaTeX: \newdateformat{chinesedate}{\THEYEAR年\THEMONTH月\THEDAY日}
 #+LaTeX: \newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
@@ -144,7 +155,7 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
    邮件请求，接入Quantum网络中（[[fig:blockchain-broker-diagram][Brokers拓扑图]]）。
 
    # reference http://orgmode.org/org.html#Images-in-LaTeX-export
-   #+CAPTION: Brokers
+   #+CAPTION: Broker Topology
    #+NAME: fig:blockchain-broker-diagram
    #+ATTR_LATEX: :float t :placement [!htb]
    [[./images/blockchain-broker-diagram.png]]
@@ -184,8 +195,6 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
    服务。
 
 *** 拓展服务
-    
-    \todo{...}
     
 **** 钱包托管
      
@@ -255,19 +264,25 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
    + Malicious Broker
    + 政策？（邮件经由分布式网络传播会破防火墙）
 
-* 参考
-# \printbibliography[type=article,title={Articles only}]
-# \printbibliography[type=book,title={Books only}]
-# \printbibliography[keyword={physics},title={Physics-related only}]
-# \printbibliography[keyword={latex},title={\LaTeX-related only}]
-#+LaTeX: \printbibliography[title={}]
-\todo{external reference list}
-
 # https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Table_of_contents
 #+LaTeX: \clearpage\newpage\thispagestyle{empty}
 #+LaTeX: \appendix
 * 附录
-#+LaTeX: \addcontentsline{toc}{subsection}{插\ \ 图}\listoffigures
-#+LaTeX: \addcontentsline{toc}{subsection}{表\ \ 格}\listoftables
+** 参  考
+# \printbibliography[type=article,title={Articles only}]
+# \printbibliography[type=book,title={Books only}]
+# \printbibliography[keyword={physics},title={Physics-related only}]
+# \printbibliography[keyword={latex},title={\LaTeX-related only}]
+#+LaTeX: \printbibliography %[title={}]
+** 术  语
+#+LaTeX: \printglossaries
+** 索  引
+#+LaTeX: \printindex
+# LaTeX: \addcontentsline{toc}{subsection}{插\ \ 图}\listoffigures
+# LaTeX: \addcontentsline{toc}{subsection}{表\ \ 格}\listoftables
+** 插  图
+#+LaTeX: \listoffigures
+# ** 表  格
+# #+LaTeX: \listoftables
 
 #+LaTeX: \clearpage\end{CJK*} % 加个 clearpage 修复 toc 中文的问题
