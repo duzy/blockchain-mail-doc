@@ -268,6 +268,9 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
 #+LaTeX: \clearpage\newpage\thispagestyle{empty}
 #+LaTeX: \appendix
 * 附录
+# LaTeX: \addcontentsline{toc}{subsection}{插\ \ 图}\listoffigures
+# LaTeX: \addcontentsline{toc}{subsection}{表\ \ 格}\listoftables
+#
 ** 参  考
 # \printbibliography[type=article,title={Articles only}]
 # \printbibliography[type=book,title={Books only}]
@@ -275,11 +278,9 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
 # \printbibliography[keyword={latex},title={\LaTeX-related only}]
 #+LaTeX: \printbibliography %[title={}]
 ** 术  语
-#+LaTeX: \printglossaries
+#+LaTeX: \printglossaries %[title=List of Terms,toctitle=Terms and abbreviations]
 ** 索  引
 #+LaTeX: \printindex
-# LaTeX: \addcontentsline{toc}{subsection}{插\ \ 图}\listoffigures
-# LaTeX: \addcontentsline{toc}{subsection}{表\ \ 格}\listoftables
 ** 插  图
 #+LaTeX: \listoffigures
 # ** 表  格
