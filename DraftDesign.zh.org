@@ -16,9 +16,9 @@
 #+LaTeX_HEADER: \usepackage{multind}
 #+LaTeX_HEADER: \makeindex[intoc, name=general, title=General Index, columns=2]
 #+LaTeX_HEADER: \makeindex[intoc, name=aut,title=Authors Index,columns=2]
-#+LaTeX_HEADER: \usepackage[acronyms,toc]{glossaries}
-#+LaTeX_HEADER: \loadglsentries[main]{Glossaries}\makeglossaries
-# LaTeX_HEADER: \input]{Glossaries}\makeglossaries
+#+LaTeX_HEADER: \usepackage[acronyms,toc]{glossaries}\makeglossaries
+#+LaTeX_HEADER: \loadglsentries[main]{Glossaries}
+# LaTeX_HEADER: \input{Glossaries}
 #+LaTeX: \setcounter{secnumdepth}{2}
 #+LaTeX: \renewcommand{\abstractname}{概\ \ 要}
 #+LaTeX: \renewcommand\contentsname{目\ \ 录}

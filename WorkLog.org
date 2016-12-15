@@ -9,6 +9,11 @@
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
 
+* Date 2016-12-13 \P{[0/2]}
+
+  - [ ] Mail delivery design
+  - [ ] Mail storage design
+
 * Date 2016-12-13 \P{[3/5]}
 
   - [X] Refining whitepaper (draft design)
