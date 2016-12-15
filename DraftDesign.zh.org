@@ -12,39 +12,39 @@
 #+LaTeX_HEADER: \usepackage{CJKutf8} %{CJK}
 #+LaTeX_HEADER: \usepackage{pinyin} % also part of CJK
 #+LaTeX_HEADER: \usepackage{biblatex}\addbibresource{References.bib}
-#+LaTeX_HEADER: \usepackage[makeindex]{imakeidx}
-#+LaTeX_HEADER: \usepackage{multind}
-#+LaTeX_HEADER: \makeindex[intoc, name=general, title=General Index, columns=2]
-#+LaTeX_HEADER: \makeindex[intoc, name=aut,title=Authors Index,columns=2]
+#+LaTeX_HEADER: \usepackage{imakeidx}\makeindex
 #+LaTeX_HEADER: \usepackage[acronyms,toc]{glossaries}\makeglossaries
-#+LaTeX_HEADER: \loadglsentries[main]{Glossaries}
-# LaTeX_HEADER: \input{Glossaries}
-#+LaTeX: \setcounter{secnumdepth}{2}
-#+LaTeX: \renewcommand{\abstractname}{概\ \ 要}
-#+LaTeX: \renewcommand\contentsname{目\ \ 录}
-#+LaTeX: \renewcommand{\figurename}{图}
-# LaTeX: \renewcommand{\listfigurename}{插\ \ 图}
-#+LaTeX: \renewcommand{\listfigurename}{}
-# LaTeX: \renewcommand{\listoffigures}{\@starttoc{lof}}
-# LaTeX: \renewcommand{\listtablename}{表\ \ 格}
-#+LaTeX: \renewcommand{\listtablename}{}
-# LaTeX: \renewcommand{\listoftables}{\@starttoc{lot}}
-#+LaTeX: \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
-#+LaTeX: \newdateformat{chinesedate}{\THEYEAR年\THEMONTH月\THEDAY日}
-#+LaTeX: \newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
-#+LaTeX: \setlength{\parindent}{20pt}
-#+LaTeX: \setlength{\parskip}{2pt}
-#+LaTeX: \setlength{\baselineskip}{18pt} %{5mm}
-#+LaTeX: %\setlength{\baselinestretch}{1.2}
-#+LaTeX: \linespread{1.3}
-#+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
-#+LaTeX: \def\note#1{{\footnotesize\textcolor{pink}{{\bf NOTE:}\ #1}}}
-#+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
-#+LaTeX: \def\todo#1{{(\textcolor{red}{\bf TODO:}\ #1)}}
-#+LaTeX: \def\draft#1{\textcolor{Bittersweet}{#1}}
-#+LaTeX: \def\term#1{\textcolor{Sepia}{\bf #1}}
-#+LaTeX: \def\hl#1{{\textcolor{CadetBlue}{#1}}}
-#+LaTeX: \def\kw#1{\textbf{\textsl{\textcolor{Brown}{#1}}}}
+#+LaTeX_HEADER: \input{Glossaries}
+#+LaTeX_HEADER: \renewcommand{\abstractname}{概\ \ 要}
+#+LaTeX_HEADER: \renewcommand\contentsname{目\ \ 录}
+#+LaTeX_HEADER: \renewcommand{\figurename}{图}
+# LaTeX_HEADER: \renewcommand{\listfigurename}{插\ \ 图}
+#+LaTeX_HEADER: \renewcommand{\listfigurename}{}
+# LaTeX_HEADER: \renewcommand{\listoffigures}{\@starttoc{lof}}
+# LaTeX_HEADER: \renewcommand{\listtablename}{表\ \ 格}
+#+LaTeX_HEADER: \renewcommand{\listtablename}{}
+# LaTeX_HEADER: \renewcommand{\listoftables}{\@starttoc{lot}}
+# LaTeX_HEADER: \renewcommand\bibname{参\ \ 考}
+#+LaTeX_HEADER: \renewcommand\bibname{}
+# LaTeX_HEADER: \renewcommand\indexname{索\ \ 引}
+#+LaTeX_HEADER: \renewcommand\indexname{}
+#+LaTeX_HEADER: \newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+#+LaTeX_HEADER: \newdateformat{chinesedate}{\THEYEAR年\THEMONTH月\THEDAY日}
+#+LaTeX_HEADER: \newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
+#+LaTeX_HEADER: \setcounter{secnumdepth}{2}
+#+LaTeX_HEADER: \setlength{\parindent}{20pt}
+#+LaTeX_HEADER: \setlength{\parskip}{2pt}
+#+LaTeX_HEADER: \setlength{\baselineskip}{18pt} %{5mm}
+#+LaTeX_HEADER: %\setlength{\baselinestretch}{1.2}
+#+LaTeX_HEADER: \linespread{1.3}
+#+LaTeX_HEADER: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX_HEADER: \def\note#1{{\footnotesize\textcolor{pink}{{\bf NOTE:}\ #1}}}
+#+LaTeX_HEADER: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+#+LaTeX_HEADER: \def\todo#1{{(\textcolor{red}{\bf TODO:}\ #1)}}
+#+LaTeX_HEADER: \def\draft#1{\textcolor{Bittersweet}{#1}}
+#+LaTeX_HEADER: \def\term#1{\textcolor{Sepia}{\bf\index{#1}#1}}
+#+LaTeX_HEADER: \def\hl#1{{\textcolor{CadetBlue}{#1}}}
+#+LaTeX_HEADER: \def\kw#1{\textbf{\textsl{\textcolor{Brown}{#1}}}}
 #+LaTeX: \begin{CJK*}{UTF8}{gbsn}
 
 #+LaTeX: \title{基于区块连的SMTP设计\small(Drafting)}
@@ -53,7 +53,7 @@
 #+LaTeX: \maketitle
 
 #+BEGIN_ABSTRACT
-SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其与区块链技术做一个
+\term{SMTP}\cite{RFC5321,RFC2821,RFC821}是经典的电子邮局协议，我们将其与区块链技术做一个
 结合的尝试。用户在没有一个数字钱包客户端的情况下，可以使用传统的邮件客户端
 \draft{管理（支付）}财产。我们称这个系统为\href{http://www.springemail.com}{Spring Email}。
 #+END_ABSTRACT
@@ -264,26 +264,26 @@ SMTP\cite{RFC821,RFC2821,RFC5321}是经典的电子邮局协议，我们将其�
    + Malicious Broker
    + 政策？（邮件经由分布式网络传播会破防火墙）
 
+
 # https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Table_of_contents
 #+LaTeX: \clearpage\newpage\thispagestyle{empty}
 #+LaTeX: \appendix
 * 附录
 # LaTeX: \addcontentsline{toc}{subsection}{插\ \ 图}\listoffigures
 # LaTeX: \addcontentsline{toc}{subsection}{表\ \ 格}\listoftables
-#
 ** 参  考
-# \printbibliography[type=article,title={Articles only}]
-# \printbibliography[type=book,title={Books only}]
-# \printbibliography[keyword={physics},title={Physics-related only}]
-# \printbibliography[keyword={latex},title={\LaTeX-related only}]
-#+LaTeX: \printbibliography %[title={}]
+# LaTeX: \bibliographystyle{plain}
+# LaTeX: \bibliography{References.bib}
+#+LaTeX: \printbibliography[heading=none]
 ** 术  语
-#+LaTeX: \printglossaries %[title=List of Terms,toctitle=Terms and abbreviations]
+#+LaTeX: \printglossaries%[title=List of Terms,toctitle=Terms and abbreviations]
+** 插  图
+# LaTeX: \listoffigures
+#+LaTeX: \makeatletter\@starttoc{lof}\makeatother
+# ** 表  格
+# LaTeX: \listoftables
+#+LaTeX: \makeatletter\@starttoc{lot}\makeatother
 ** 索  引
 #+LaTeX: \printindex
-** 插  图
-#+LaTeX: \listoffigures
-# ** 表  格
-# #+LaTeX: \listoftables
 
 #+LaTeX: \clearpage\end{CJK*} % 加个 clearpage 修复 toc 中文的问题
