@@ -3,6 +3,8 @@
 /.emacs.desktop.lock
 /WorkLogTemplate.pdf
 /WorkLogTemplate.tex
+/WorkLog.fdb_latexmk
+/WorkLog.fls
 /WorkLog.pdf
 /WorkLog.tex
 /WorkPlanTemplate.pdf
