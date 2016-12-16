@@ -52,13 +52,13 @@
 #+LaTeX_HEADER:   scale=.6, opacity=.15, angle=0, placement=top,
 #+LaTeX_HEADER:   contents={\includegraphics[width=.8\textwidth]{./images/spring-email.png}}
 #+LaTeX_HEADER: }
-#+LaTeX_HEADER:
+#+LaTeX_HEADER: \newcommand\background[2]{\backgroundsetup{hshift=#1,vshift=#2}}
 #+LaTeX: \begin{CJK*}{UTF8}{gbsn}
 
 #+LaTeX: \title{基于区块连的电子邮件系统设计\small(Drafting)}
 #+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
 #+LaTeX: \date{2016年12月8日\\\tiny{(\chinesedate\today更新)}}
-#+LaTeX: \backgroundsetup{ hshift=14cm, vshift=-39cm }
+#+LaTeX: \background{14cm}{-39cm}
 #+LaTeX: \maketitle
 
 #+BEGIN_ABSTRACT
@@ -69,9 +69,9 @@
 
 #+TOC: headlines 2 local
 
-#+LaTeX: \backgroundsetup{ hshift=0cm, vshift=-16cm }
+#+LaTeX: \background{0cm}{-16cm}
 #+LaTeX: \newpage
-#+LaTeX: \backgroundsetup{ hshift=14cm, vshift=1cm }
+#+LaTeX: \background{14cm}{1cm}
 
 * 简介
 
