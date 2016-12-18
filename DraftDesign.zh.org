@@ -167,7 +167,7 @@
 
   # reference http://orgmode.org/org.html#Images-in-LaTeX-export
   #+CAPTION: Broker Topology
-   #+NAME: fig:blockchain-broker-diagram
+  #+NAME: fig:blockchain-broker-diagram
   #+ATTR_LATEX: :float t :placement [!htb]
   [[./images/blockchain-broker-diagram.png]]
 
@@ -238,7 +238,12 @@
    用户通常使用兼容的邮件客户端撰写邮件，客户端通过\term{SMTP}\cite{RFC5321}与邮件服
    务器发起网络会话，通过服务器将邮件送达接收者邮箱所在的服务器，并由该服务器确定接收
    者帐号，将邮件分发至其邮箱。这就是经典\term{SMTP}\cite{RFC5321}电子邮局的邮件发送
-   过程。
+   过程（[[fig:classic-mail-delivery][经典邮件发送拓示意图]]）。
+
+   #+CAPTION: Classic Email Delivery Path
+   #+NAME: fig:classic-mail-delivery
+   #+ATTR_LATEX: :float t :placement [!htb] :width .9\textwidth
+   [[./images/classic-mail-delivery.png]]
 
    经典的邮件发送模式，有些显而易见的短处：
    + 邮箱集中化，其可用性完全由邮件服务器决定
@@ -260,33 +265,75 @@
      
      在某些情况下，邮件服务器之间并不能很好的互联，这导致两个邮件服务器之间的邮箱难
      以互通，使用户无法发送邮件给某些邮箱。
-
-   \todo{Dataflow Diagram for Message Delivery}
-
+   
 ** 分布式
 
    分布式邮件发送对经典邮件系统是重要的改变，但这种变化对邮件客户端是透明的。分布式
-   邮件发送会直接改变
+   邮件发送改变的是邮件送达收件人的路径。
 
-   \todo{Dataflow Diagram for Message Delivery}
+   假设Alice和Bob分别拥有以下\term{链地址}：
+   \begin{enumerate}[label=\protect\circled{\arabic*}]
+   \item\hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe}
+   \item\hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96}
+   \end{enumerate}
+   Alice能够访问\textbf{Broker 1}，而Bob能够访问\textbf{Broker 3}，因此他们分别能够
+   使用以下邮箱地址来发送邮件：
+   \begin{enumerate}[label=\protect\circled{\arabic*}]\setcounter{enumi}{2}
+   \item\hl{1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@broker1.example.com}
+   \item\hl{1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96@broker3.example.com}
+   \end{enumerate}
+   Alice通过地址\circled{3}接入\textbf{Broker 1}向Bob发送邮件。而\textbf{Broker 1}并
+   不知道如何能够抵达Bob，它将向Quantum网络询问Bob\term{链地址}\circled{2}的网络信息
+   （如\textbf{Broker 3}的网络地址）。找到网络信息之后，\textbf{Broker 1}将与
+   \textbf{Broker 3}发起对话，传送邮件。\textbf{Broker 3}进一步将邮件通知给Bob接收。
+   （[[fig:distrubuted-mail-delivery][分布式邮件发送图]]）
 
+   \todo{Detailed Delivery Specification, Protocols}
+
+   #+CAPTION: Distrubuted Email Delivery Path
+   #+NAME: fig:distrubuted-mail-delivery
+   #+ATTR_LATEX: :float t :placement [!htb] :width .96\textwidth
+   [[./images/distrubuted-mail-delivery.png]]
+
+*** 邮件送达反馈
+
+    \todo{More Consideration Required}
+   
 * 邮件存储 (Storage)
 
-  \todo{...}
+  电子邮件并非即时通信，要保证邮件不丢失，我们必须存储方用户邮件。
 
-  电子邮局非即时通信，\kw{Broker}需要用户的邮件。可能的存储方式有：
-    
+  \todo{Detailed Storage Specification}
+
 ** 链内存储
      
-   链内存储必须要支付\textbf{有意义}的费用，而且有严格的字节限制。
+   将邮件保存至区块链，必需谨慎考虑以下问题：
+
+*** 邮件的费用
+
+    链内存储邮件必须要支付\textbf{较高}的费用，以免被滥用。\todo{More Concerns}
+    
+*** 邮件的大小
+
+    总邮件字节数必须是有严格限制的。\todo{Format Specification, Compression}
      
 ** 外部存储
-     
-   由\kw{Broker}决定如何存储邮件，甚至\kw{Broker}可以以此向用户收费。
+
+   由\kw{Broker}或用户自己决定如何存储邮件。可能会有以下几种情况：
+
+*** Broker托管邮件
+
+    类似经典\term{Mail Server}，\term{Broker}为用户分配存储空间，且可以根据自己的
+    业务来向用户收取服务费用。     
+
+*** 用户自己存储邮件
+
+    用户也可以选择自己运行Broker，然后配置自己的存储方式。对普通用户来说，这并不是
+    一件容易的事情，因为必须要保持Broker一直在线，才不会丢失邮件。
 
 * 向后兼容（Backward Compatibility）
 
-  \todo{...}
+  \todo{More Consideration Required}
 
 ** 邮件客户端
    + 传统邮件客户端
@@ -303,7 +350,7 @@
    
 * 安全（Security Concerns）
 
-  \todo{...}
+  \todo{More Consideration Required}
 
    + DDoS
    + 验证

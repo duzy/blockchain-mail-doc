@@ -9,13 +9,28 @@
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
 
-* Date 2016-12-15 \P{[1/5]}
+# http://orgmode.org/manual/Advanced-configuration.html#Advanced-configuration
 
-  - [-] Refining whitepaper (draft design)
-  - [X] Mail delivery design
-  - [ ] Mail storage design
-  - [ ] Backward compatibility
-  - [ ] Security Concerns
+* Date 2016-12-17 \P{[1/4]}
+
+  - [-] Mail delivery design. \P{[1/2]}
+    - [X] Classic Mail Delivery Diagram.
+    - [ ] Destributed Mail Delivery.
+  - [X] Mail storage design.
+  - [ ] Backward compatibility.
+  - [ ] Security Concerns.
+
+* Date 2016-12-16 \P{[0/5]}
+
+  - [-] Refining whitepaper (draft design) \P{[2/3]}
+    - [X] Add Spring Email logo in the background.
+    - [ ] continue...
+  - [-] Mail delivery design \P{[1/2]}
+    - [X] Classic Mail Delivery
+    - [ ] Destributed Mail Delivery
+  - [ ] Mail storage design.
+  - [ ] Backward compatibility.
+  - [ ] Security Concerns.
 
 * Date 2016-12-15 \P{[1/3]}
 
