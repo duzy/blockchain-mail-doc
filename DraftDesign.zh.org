@@ -110,7 +110,7 @@
   王君拥有链地址\circled{1}，李君拥有链地址\circled{2}。在没有下载任何
   Quantum钱包客户端的情况下，王君要给李君发送信息（资产），我们可以在网络中创建
   以下邮件\todo{mail format definition}：
-  #+BEGIN_SRC
+  #+BEGIN_SRC text
   From: 1KvwTxFqJSSjztyEN3LLmLDWr4xVZtGk96@node.example.com
   To: 1PkyncFDsXmcg6pnPUvNJWougztWejAdVe@node.example.com
   Subject: Great Money for Li
@@ -306,7 +306,7 @@
   \todo{Detailed Storage Specification}
 
 ** 链内存储
-     
+   
    将邮件保存至区块链，必需谨慎考虑以下问题：
 
 *** 邮件的费用

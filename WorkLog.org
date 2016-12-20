@@ -1,7 +1,5 @@
-#+TITLE: Blockchain SMTP Worklogs
-#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
-#+DATE: Since 2016-12-08\\\tiny{\sl (Updated \today)}
-#+OPTIONS: toc:nil
+#+TITLE:
+#+OPTIONS: toc:nil author:nil date:nil
 #+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
 #+LaTeX_HEADER: \usepackage[margin=1.in]{geometry}
 #+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
@@ -10,6 +8,24 @@
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
 
 # http://orgmode.org/manual/Advanced-configuration.html#Advanced-configuration
+
+#+LaTeX: \title{Blockchain Mail System Worklogs}
+#+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
+#+LaTeX: \date{Since 2016-12-08\\\tiny{(Updated \today)}}
+#+LaTeX: \maketitle
+
+* Date 2016-12-20 \P{[0/1]}
+
+  * [X] Maintain task breakdown in WorkPlan instead of WorkLogs.
+  * [ ] Quick implementation for basic SMTP communication.
+
+* Date 2016-12-19 \P{[0/1]}
+
+  - [-] Bitcoin-core fork for concept verification & prototyping. \P{[1/2]}
+    - [X] Setup new environment based on a bare fork from bitcoin-core.
+    - [ ] Perform basic verification for core features.  \P{[0/2]}
+      1. [ ] Quick implementation for basic SMTP communication.
+      2. [ ] A test SMTP client talking to the blockchain.
 
 * Date 2016-12-17 \P{[1/4]}
 

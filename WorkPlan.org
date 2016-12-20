@@ -1,6 +1,4 @@
-#+TITLE: Blockchain SMTP Work Plan
-#+AUTHOR: Duzy Chan\\\tiny(code@duzy.info)
-#+DATE: Since 2016-12-08\\\footnotesize{\sl (Updated on \today)}
+#+TITLE:
 #+OPTIONS: toc:nil
 #+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
 #+LaTeX_HEADER: \usepackage[margin=1.in]{geometry}
@@ -9,6 +7,18 @@
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
 
-* Drafting Design
-* Prototyping
+#+LaTeX: \title{Blockchain Mail System WorkPlan}
+#+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
+#+LaTeX: \date{Since 2016-12-08\\\tiny{(Updated \today)}}
+#+LaTeX: \maketitle
+
+* DONE Drafting Design [1/1]
   
+  + [X] DraftDesign.zh.pdf
+  
+* TODO Concept Verification & Prototyping [1/2]
+
+  + [X] Setup environment based on a bare fork from bitcoin-core.
+  + [ ] Basic verification for core features. [0/2]
+    1. [ ] Quick implementation for basic SMTP communication.
+    2. [ ] A test SMTP client talking to the blockchain.
