@@ -3,7 +3,7 @@
 #+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
 #+LaTeX_HEADER: \usepackage[margin=1.in]{geometry}
 #+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
-#+LaTeX: \setcounter{secnumdepth}{0}
+#+LaTeX_HEADER: \setcounter{secnumdepth}{0}
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
 
@@ -12,13 +12,24 @@
 #+LaTeX: \date{Since 2016-12-08\\\tiny{(Updated \today)}}
 #+LaTeX: \maketitle
 
-* DONE Drafting Design [1/1]
+* TODO Arch Design & Whitepaper [1/3]
   
-  + [X] DraftDesign.zh.pdf
-  
-* TODO Concept Verification & Prototyping [1/2]
+** DONE Drafting Design [1/1]
 
-  + [X] Setup environment based on a bare fork from bitcoin-core.
+   + [X] DraftDesign.zh.pdf
+
+** TODO Former Whitepaper [1/1]
+
+   Requires: \textsl{Concept Verification \& Prototyping}
+   
+   + [ ] Refine and change DraftDesign.zh.pdf into publishable whitepaper.
+
+** TODO English version of whitepaper
+
+* TODO Concept Verification & Prototyping [0/2]
+
+  + [-] Setup environment based on a bare fork from bitcoin-core.
   + [ ] Basic verification for core features. [0/2]
     1. [ ] Quick implementation for basic SMTP communication.
     2. [ ] A test SMTP client talking to the blockchain.
+       

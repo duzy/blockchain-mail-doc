@@ -16,13 +16,14 @@
 
 * Date 2016-12-20 \P{[0/1]}
 
-  * [X] Maintain task breakdown in WorkPlan instead of WorkLogs.
-  * [ ] Quick implementation for basic SMTP communication.
+  + [X] Maintain task breakdown in WorkPlan instead of WorkLogs.
+  + [-] Continue setup blockchain dev environment.
+  + [ ] Quick implementation for basic SMTP communication.
 
 * Date 2016-12-19 \P{[0/1]}
 
   - [-] Bitcoin-core fork for concept verification & prototyping. \P{[1/2]}
-    - [X] Setup new environment based on a bare fork from bitcoin-core.
+    - [-] Setup new dev environment based on a bare fork from bitcoin-core.
     - [ ] Perform basic verification for core features.  \P{[0/2]}
       1. [ ] Quick implementation for basic SMTP communication.
       2. [ ] A test SMTP client talking to the blockchain.
