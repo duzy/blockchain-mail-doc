@@ -3,33 +3,70 @@
 #+LaTeX_CLASS_OPTIONS: [colorlinks=true,urlcolor=blue,secnums]
 #+LaTeX_HEADER: \usepackage[margin=1.in]{geometry}
 #+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
-#+LaTeX_HEADER: \setcounter{secnumdepth}{0}
+#+LaTeX_HEADER: \setcounter{secnumdepth}{3}
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+#+LaTeX: \def\ON#1{{\bf\textcolor{Dandelion}{#1}}}
 
 #+LaTeX: \title{Blockchain Mail System WorkPlan}
 #+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
-#+LaTeX: \date{Since 2016-12-08\\\tiny{(Updated \today)}}
+#+LaTeX: \date{Since 2016-12-20\\\tiny{(Updated \today)}}
 #+LaTeX: \maketitle
 
-* TODO Arch Design & Whitepaper [1/3]
+#+BEGIN_ABSTRACT
+\footnotesize
+Note: items are marked according to their status, e.g. already done
+(\textcolor{red}{$\boxtimes$}), partially done (\textcolor{red}{$\boxminus$}),
+planned but nothing done (\textcolor{red}{$\square$}). Item text in \ON{yellow color}
+denotes the active status (under development).
+#+END_ABSTRACT
+
+# http://orgmode.org/manual/Advanced-configuration.html#Advanced-configuration
+# #+BIND: org-export-filter-item-functions (local-fun-item)
+# #+BEGIN_SRC emacs-lisp :exports results :results none
+#   (defun local-fun-item (s backend info)
+#     (message s))
+# #+END_SRC
+
+* VERIFY Arch Design & Whitepaper [1/3]
   
 ** DONE Drafting Design [1/1]
 
-   + [X] DraftDesign.zh.pdf
+   + [X] Chinese whitepaper (=DraftDesign.zh.pdf=)
 
-** TODO Former Whitepaper [1/1]
+** TODO Finalized Whitepaper [0/1]
+\label{finalized-whitepaper}
 
-   Requires: \textsl{Concept Verification \& Prototyping}
-   
-   + [ ] Refine and change DraftDesign.zh.pdf into publishable whitepaper.
+   + Require \hyperref[concept-verification-prototyping]{Concept Verification \& Prototyping}
+   + [ ] Refine and change =DraftDesign.zh.pdf= into publishable whitepaper.
 
 ** TODO English version of whitepaper
 
-* TODO Concept Verification & Prototyping [0/2]
+   + Require \hyperref[finalized-whitepaper]{Finalized Whitepaper}
 
-  + [-] Setup environment based on a bare fork from bitcoin-core.
-  + [ ] Basic verification for core features. [0/2]
-    1. [ ] Quick implementation for basic SMTP communication.
+* TODO Concept Verification & Prototyping [1/2]
+\label{concept-verification-prototyping}
+
+  + [X] Setup environment based on a bare fork from bitcoin-core. [3/3]
+    - [X] Development environment for customizing the blockchain
+    - [X] Create a standalone fork of blockchain.
+    - [X] Mine some coins to ensure the new blockchain is working
+      - [X] and prepare coins for future usage.
+      - [X] just confirm it's able to send coins
+  + [-] Basic verification for core features. [0/4]
+    1. [-] Quick implementation for basic SMTP communication. [1/3]
+       - [X] Implement mail subsystem fundamentals.
+       - [-] \ON{Implement simple SMTP for mail subsystem.} (no storage of emails)
+       - [ ] Testing mail subsystem with email clients.
     2. [ ] A test SMTP client talking to the blockchain.
-       
+    3. [ ] Serving wallet as mailboxes to accept querying.
+    4. [ ] A machanism to route mail messages. [0/1]
+       - [ ] Charging fee for routing service (like a mail stamp).
+
+* TODO Polishing Prototype & Improve Whitepaper [0/2]
+\label{polish-prototype-whitepaper}
+** TODO Improve mail subsystem [0/3]
+*** TODO Multiple worker threads
+*** TODO Support SSL connection
+*** TODO Asynchronous Bufferred IO Performance
+** TODO Create test suites for mail subsystem

@@ -6,6 +6,7 @@
 #+LaTeX: \setcounter{secnumdepth}{0}
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+#+LaTeX: \def\ON#1{{\bf\textcolor{Dandelion}{#1}}}
 
 # http://orgmode.org/manual/Advanced-configuration.html#Advanced-configuration
 
@@ -14,48 +15,111 @@
 #+LaTeX: \date{Since 2016-12-08\\\tiny{(Updated \today)}}
 #+LaTeX: \maketitle
 
-* Date 2016-12-20 \P{[0/1]}
+#+BEGIN_ABSTRACT
+\small\footnotesize
+Note: items are marked according to their status, e.g. already done
+(\textcolor{red}{$\boxtimes$}), partially done (\textcolor{red}{$\boxminus$}),
+planned but nothing done (\textcolor{red}{$\square$}). Item text in \ON{yellow color}
+denotes the active status (under development).
+#+END_ABSTRACT
+
+* Date 2016-12-28
+
+  + Concept Verification & Prototyping [0/1]
+    - [-] Changing fork for basic SMTP supports. [0/2]
+      - [-] Simple SMTP protocol implementation (quick and immature).
+      - [-] Good mixing of SMTP protocol with blockchain. [1/3]
+        - [X] Mail subsystem implementation (fundanmentals)
+        - [-] \ON{Mail subsystem simple SMTP protocol implementation}
+        - [ ] New message classes for mail server
+
+* Date 2016-12-27
+
+  + Concept Verification & Prototyping [0/1]
+    - [-] Changing fork for basic SMTP supports. [0/2]
+      - [-] Simple SMTP protocol implementation (quick and immature).
+      - [-] Good mixing of SMTP protocol with blockchain. [1/2]
+        - [-] Mail subsystem implementation (quick and immature).
+        - [ ] New message classes for mail server
+
+* Date 2016-12-26
+
+  + Concept Verification & Prototyping [0/1]
+    - [-] Changing fork for basic SMTP supports. [0/2]
+      - [-] Simple SMTP protocol implementation (quick and immature).
+      - [-] Good mixing of SMTP protocol with blockchain. [1/2]
+        - [X] Find the good starting to prototype mail server in bitcoin-core
+        - [-] Mail subsystem implementation (quick and immature).
+
+* Date 2016-12-24
+
+  + Concept Verification & Prototyping [0/1]
+    - [-] Changing fork for basic SMTP supports. [0/2]
+      - [-] Simple SMTP protocol implementation (quick and immature).
+      - [-] Good mixing of SMTP protocol with blockchain.
+
+* Date 2016-12-23
+
+  + Concept Verification & Prototyping [1/2]
+    - [X] Quick test mining (as long as it's generating coins).
+      - [X] Mine some coins for later development usage.
+    - [-] Changing fork for basic SMTP supports.
+      
+* Date 2016-12-22
+
+  + Concept Verification & Prototyping [2/2]
+    - [X] Adjust the customzied blockchain network to ease mining.
+    - [X] Add internal miner to ease mining (for future development).
+
+* Date 2016-12-21
+
+  + Concept Verification & Prototyping [1/2]
+    - [X] Adjust the customzied blockchain network to ease mining.
+    - [-] Add internal miner to ease mining (for future development).
+
+* Date 2016-12-20 [2/2]
 
   + [X] Maintain task breakdown in WorkPlan instead of WorkLogs.
-  + [-] Continue setup blockchain dev environment.
-  + [ ] Quick implementation for basic SMTP communication.
+  + [X] Concept Verification & Prototyping [2/2]
+    - [X] Development environment for customizing the blockchain
+    - [X] Create a standalone fork of blockchain.
 
-* Date 2016-12-19 \P{[0/1]}
+* Date 2016-12-19 [0/1]
 
-  - [-] Bitcoin-core fork for concept verification & prototyping. \P{[1/2]}
+  - [-] Bitcoin-core fork for concept verification & prototyping. [1/2]
     - [-] Setup new dev environment based on a bare fork from bitcoin-core.
-    - [ ] Perform basic verification for core features.  \P{[0/2]}
+    - [ ] Perform basic verification for core features.  [0/2]
       1. [ ] Quick implementation for basic SMTP communication.
       2. [ ] A test SMTP client talking to the blockchain.
 
-* Date 2016-12-17 \P{[1/4]}
+* Date 2016-12-17 [1/4]
 
-  - [-] Mail delivery design. \P{[1/2]}
+  - [-] Mail delivery design. [1/2]
     - [X] Classic Mail Delivery Diagram.
     - [ ] Destributed Mail Delivery.
   - [X] Mail storage design.
   - [ ] Backward compatibility.
   - [ ] Security Concerns.
 
-* Date 2016-12-16 \P{[0/5]}
+* Date 2016-12-16 [0/5]
 
-  - [-] Refining whitepaper (draft design) \P{[2/3]}
+  - [-] Refining whitepaper (draft design) [2/3]
     - [X] Add Spring Email logo in the background.
     - [ ] continue...
-  - [-] Mail delivery design \P{[1/2]}
+  - [-] Mail delivery design [1/2]
     - [X] Classic Mail Delivery
     - [ ] Destributed Mail Delivery
   - [ ] Mail storage design.
   - [ ] Backward compatibility.
   - [ ] Security Concerns.
 
-* Date 2016-12-15 \P{[1/3]}
+* Date 2016-12-15 [1/3]
 
   - [-] Refining whitepaper (draft design)
   - [ ] Mail delivery design
   - [ ] Mail storage design
 
-* Date 2016-12-14 \P{[3/5]}
+* Date 2016-12-14 [3/5]
 
   - [-] Refining whitepaper (draft design)
   - [X] Broker interconnection design
@@ -63,21 +127,21 @@
   - [ ] Mail delivery design
   - [ ] Mail storage design
 
-* Date 2016-12-13 \P{[2/2]}
+* Date 2016-12-13 [2/2]
 
   - [-] Refining design doc (turning into \textbf{whitepaper}).
   - [X] Thinking about addresses & domains.
 
-* Date 2016-12-12 \P{[2/2]}
+* Date 2016-12-12 [2/2]
 
   - [-] Refining design doc.
   - [X] Broker system diagram.
 
-* Date 2016-12-09 \P{[1/1]}
+* Date 2016-12-09 [1/1]
 
   - [X] Refine the initial design doc (based on the meeting yestoday).
 
-* Date 2016-12-08 \P{[2/2]}
+* Date 2016-12-08 [2/2]
 
   - [X] Initial Design Brainstoming.
   - [X] Meeting Patrick in Shenzhen.
