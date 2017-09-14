@@ -5,8 +5,11 @@
 #+LaTeX_HEADER: \usepackage[dvipsnames]{xcolor}
 #+LaTeX_HEADER: \setcounter{secnumdepth}{3}
 #+LaTeX: \def\P#1{{\tiny\textcolor{CadetBlue}{#1}}}
+#+LaTeX_HEADER: \renewcommand\contentsname{Contents of \textbf{TODO}s}
 #+LaTeX: \def\issue#1{{\footnotesize\textcolor{red}{{\bf ISSUE:}\ #1}}}
+#+LaTeX: \def\on#1{{\textcolor{Dandelion}{#1}}}
 #+LaTeX: \def\ON#1{{\bf\textcolor{Dandelion}{#1}}}
+#+LaTeX: \def\new#1{{\bf\textcolor{LimeGreen}{#1}}}
 
 #+LaTeX: \title{Blockchain Mail System WorkPlan}
 #+LaTeX: \author{Duzy Chan\\\footnotesize{geek@duzy.info}}
@@ -15,10 +18,11 @@
 
 #+BEGIN_ABSTRACT
 \footnotesize
-Note: items are marked according to their status, e.g. already done
-(\textcolor{red}{$\boxtimes$}), partially done (\textcolor{red}{$\boxminus$}),
-planned but nothing done (\textcolor{red}{$\square$}). Item text in \ON{yellow color}
-denotes the active status (under development).
+Note: items are marked according to the statuses, e.g. \textsl{already done}
+(\textcolor{red}{$\boxtimes$}), \textsl{partially done} (\textcolor{red}{$\boxminus$}),
+\textsl{planned but nothing done} (\textcolor{red}{$\square$}). Item text in \ON{yellow color}
+denotes the active status (under development). Text in \new{lime green color} denotes
+something \textbf{new}.
 #+END_ABSTRACT
 
 # http://orgmode.org/manual/Advanced-configuration.html#Advanced-configuration
@@ -28,45 +32,163 @@ denotes the active status (under development).
 #     (message s))
 # #+END_SRC
 
-* VERIFY Arch Design & Whitepaper [1/3]
+#+TOC: headlines
+
+* DOING Arch Design & Whitepaper [1/3]
   
 ** DONE Drafting Design [1/1]
+   \label{drafting-design}
 
-   + [X] Chinese whitepaper (=DraftDesign.zh.pdf=)
+   The draft design is tending to be an overview and whitepaper to the public. The
+   concepts are not verified yet. We're going to have a prototype base to verify some
+   of the core concepts before we can continue to make a \hyperref[stablized-whitepaper]{public-reviewable whitepaper}.
 
-** TODO Finalized Whitepaper [0/1]
-\label{finalized-whitepaper}
+*** DONE Chinese whitepaper (=DraftDesign.zh.pdf=)
+
+** TODO Stablized Whitepaper [0/1]
+   \label{stablized-whitepaper}
+
+   A stablized whitepaper is ready for public reviews. The core framework
+   of concepts should be verified. Future improvements for the whitepaper will still
+   happen (without changing the framework).
 
    + Require \hyperref[concept-verification-prototyping]{Concept Verification \& Prototyping}
-   + [ ] Refine and change =DraftDesign.zh.pdf= into publishable whitepaper.
+
+     We need to at least verify that the core ideas are working with the prototype
+     base before we can continue with the paper work.
+
+     The section "\hyperref[concept-verification-prototyping]{Concept Verification \& Prototyping}" explains
+     everything of how we're doing it.
+     
+*** TODO Refine and change =DraftDesign.zh.pdf= into publishable whitepaper.
+
+    Continue the work with the \hyperref[drafting-design]{draft design}.
 
 ** TODO English version of whitepaper
 
-   + Require \hyperref[finalized-whitepaper]{Finalized Whitepaper}
+   It's basically a translation of the Chinese version for the stablized whitepaper
+   (=DraftDesign.zh.pdf=) (See \hyperref[drafting-design]{Draft Design}).
 
-* TODO Concept Verification & Prototyping [1/2]
-\label{concept-verification-prototyping}
+   + Require \hyperref[stablized-whitepaper]{Stablized Whitepaper}
 
-  + [X] Setup environment based on a bare fork from bitcoin-core. [3/3]
-    - [X] Development environment for customizing the blockchain
-    - [X] Create a standalone fork of blockchain.
-    - [X] Mine some coins to ensure the new blockchain is working
-      - [X] and prepare coins for future usage.
-      - [X] just confirm it's able to send coins
-  + [-] Basic verification for core features. [0/4]
-    1. [-] Quick implementation for basic SMTP communication. [1/3]
-       - [X] Implement mail subsystem fundamentals.
-       - [-] \ON{Implement simple SMTP for mail subsystem.} (no storage of emails)
-       - [ ] Testing mail subsystem with email clients.
-    2. [ ] A test SMTP client talking to the blockchain.
-    3. [ ] Serving wallet as mailboxes to accept querying.
-    4. [ ] A machanism to route mail messages. [0/1]
-       - [ ] Charging fee for routing service (like a mail stamp).
+* DOING Prototype & Concept Verification [1/2]
+  \label{concept-verification-prototyping}
+
+  Build the very basic prototype (based on [[https://github.com/bitcoin/bitcoin][bitcoin-core]]) to verify concepts and
+  models raised in the \hyperref[drafting-design]{draft design} (don't need to
+  have a perfect or complete implementation). (\textbf{PoC})\label{proof-of-concept}
+
+** DONE Bare fork based on Bitcoin Core [3/3]
+
+   Fork the [[https://github.com/bitcoin/bitcoin][Bitcoin Core]] to create a simple \textbf{altcoin} for prototyping
+   mailing concepts. We will build a specific network of this \textbf{altcoin},
+   and mine some coins for it for development usage. The network will be dedicated
+   for testing mail concepts (raised in the \hyperref[drafting-design]{draft design}).
+
+   This [[https://github.com/duzy/blockchain-mail][new \textbf{altcoin}]] will finally be deprecated.
+    
+*** DONE Setup development environment
+    
+    Development environment for customizing the blockchain.
+    
+*** DONE Standalone blockchain network
+    
+    Create a standalone fork of blockchain running as a
+    seperate network ([[https://github.com/duzy/blockchain-mail][like a \textbf{altcoin}]]).
+    
+*** DONE Mining the new coin [1/1]
+    
+    Mine some coins to ensure the new blockchain is working.
+    The coins will also be kept for future usage.
+    
+**** DONE Simple transaction tests
+     
+     Just confirm that it's able to send coins.
+
+** DOING Mail subsystem [1/3]
+
+   Implement mail subsystem (immature one) in the [[https://github.com/duzy/blockchain-mail][new \textbf{altcoin}]], with simple
+   SMTP supports. We will perform concept verification with this very-early
+   mail subsystem, experiment mailing and message relays in the network.
+    
+*** DONE Basic SMTP implementation [3/3]
+
+    It requires a lot more work to do for a mature SMTP implementation. But for
+    a quick verification, we don't need to consider like a actual mail system.
+    It's fine as long as it's receiving a simple message.
+
+    We will perform checks for our concept model, experiment and design how
+    messages are being transferred (\textbf{delivery}) in the network of our [[https://github.com/duzy/blockchain-mail][new \textbf{altcoin}]].
+    
+**** DONE Implement mail subsystem fundamentals
+
+     Coding the basic classes and framework in the [[https://github.com/duzy/blockchain-mail][new \textbf{altcoin}]] for mail
+     subsystem.
+      
+**** DONE Implement simple SMTP for mail subsystem
+
+     Coding simple SMTP support for mail subsystem.
+     Just need to receive emails from clients (no storage of emails).
+
+**** DONE Test SMTP message receiving
+
+     Coding a simple test client to send messages to the mail
+     subsystem.
+
+*** DOING Mail delivery machanism [0/4]
+
+    Work out how to delivery messages in the network. It's no
+    need to be a perfect solution so far.
+    
+**** DOING Experiment message delivery in the network [1/2]
+      
+     Try extending blockchain message protocol (blockchain messaging system)..
+
+***** DONE Mail relay [2/2]
+
+      Store mail in relay node for delivery (need to refine the solution).
+
+****** DONE Message envelope decapsulate
+
+       Decapsulate message components for storage and delivery.
+
+****** DONE Store message (filesystem)
+
+       It's fine for now to store message in the filesystem.
+       Will have a specific mail storage in the next phrase.
+       
+***** DOING \ON{Deliver to destination} [0/2]
+
+****** DOING Extend bitcoin messaging protocol
+
+       For locating destination in the network (see =listaccounts=).
+       
+****** TODO Transfer messages to the destination node
+
+**** TODO Test message delivery
+
+     
+     
+**** TODO Mailling fees
+     
+     Consider charging fees for message delivery service (like a mail stamp).
+     
+*** TODO Serving wallet as mailboxes
+
+    Reconsider the combination of wallet addresses and mailboxes.
 
 * TODO Polishing Prototype & Improve Whitepaper [0/2]
 \label{polish-prototype-whitepaper}
-** TODO Improve mail subsystem [0/3]
+** TODO Improve mail subsystem [0/8]
 *** TODO Multiple worker threads
 *** TODO Support SSL connection
-*** TODO Asynchronous Bufferred IO Performance
-** TODO Create test suites for mail subsystem
+*** TODO Mail authentication
+*** TODO Asynchronous bufferred IO performance
+*** TODO Mail service capabilities report
+*** TODO Mail storage consideration
+**** TODO Relay storage quota/limitation
+*** TODO Mail delivery enhancements
+**** TODO Secure authentication machenism for transfering messages.
+*** TODO Solving TODOs and FIXMEs in the source files
+** TODO Create test suites for mail subsystem [0/1]
+*** TODO Test message delivery to a address
